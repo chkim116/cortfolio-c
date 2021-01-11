@@ -1,7 +1,14 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import { Global } from "@emotion/react";
+import reset from "../styles/reset";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />;
+    return (
+        <>
+            <Global styles={reset} />
+            <Component {...pageProps} />
+        </>
+    );
 }
 
 export default MyApp;
