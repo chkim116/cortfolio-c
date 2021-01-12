@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Axios from "axios";
-import { readSync } from "fs";
+import { authFetch, logoutFetch, checkFetch } from "../api";
 import { AppThunk } from "../rootReducer";
 
-interface UserType {
+export interface UserType {
     _id: string;
     avatarUrl: string;
     repos: string;
@@ -15,9 +14,19 @@ interface UserType {
     url: string;
     userId: string;
     jwtToken?: string;
+    blog: string;
+    location: string | null;
+    company: string | null;
 }
 
-const initialState = {
+export interface AuthState {
+    isLoading: boolean;
+    isLogin: boolean;
+    isError: string | null;
+    auth: UserType;
+}
+
+const initialState: AuthState = {
     isLoading: false,
     isLogin: false,
     isError: null,
@@ -27,12 +36,15 @@ const initialState = {
         repos: "",
         followers: "",
         followings: "",
-        bio: "",
         name: "",
         email: "",
         url: "",
         userId: "",
         jwtToken: "",
+        bio: null,
+        blog: "",
+        location: null,
+        company: null,
     },
 };
 
@@ -90,20 +102,6 @@ export const {
 } = auth.actions;
 
 export default auth.reducer;
-
-const authFetch = (code) => {
-    return Axios.post(`/auth`, {
-        code,
-    }).then((res) => res.data);
-};
-
-const logoutFetch = () => {
-    return Axios.get("/logout").then((res) => res.data);
-};
-
-const checkFetch = () => {
-    return Axios.get("/check").then((res) => res.data);
-};
 
 export const getAuth = (code): AppThunk => async (dispatch) => {
     try {
