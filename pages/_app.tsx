@@ -7,6 +7,8 @@ import Footer from "../components/layouts/Footer";
 import styled from "@emotion/styled";
 import { theme } from "../styles/theme";
 import Axios from "axios";
+import { Provider } from "react-redux";
+import store from "../modules/store";
 
 const AppLayout = styled.main``;
 
@@ -17,11 +19,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider theme={theme}>
             <Global styles={reset} />
-            <Header />
-            <AppLayout>
-                <Component {...pageProps} />
-            </AppLayout>
-            <Footer />
+            <Provider store={store}>
+                <Header />
+                <AppLayout>
+                    <Component {...pageProps} />
+                </AppLayout>
+                <Footer />
+            </Provider>
         </ThemeProvider>
     );
 }

@@ -1,31 +1,30 @@
 import { useEffect } from "react";
-import Axios from "axios";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuth } from "../../../modules/reducer/auth";
+import { RootState } from "../../../modules/rootReducer";
+import CallbackForm from "../../../components/callback/CallbackForm";
 
 const Callback = () => {
     const router = useRouter();
     const code = router.query.code;
+    const dispatch = useDispatch();
+    const { isLogin } = useSelector((state: RootState) => state.auth);
 
     useEffect(() => {
         if (!code) {
             return;
         }
-        async function getToken() {
-            try {
-                // code를 보내 express에서 처리하게끔 요청
-                await Axios.post(`/auth`, {
-                    code,
-                }).then((res) => res.data);
-                router.push("/");
-            } catch (error) {
-                console.error(error);
-                router.push("/");
-            }
-        }
-        getToken();
+        dispatch(getAuth(code));
     }, [code]);
 
-    return <div>웰컴</div>;
+    useEffect(() => {
+        if (isLogin) {
+            router.push("/");
+        }
+    }, [isLogin]);
+
+    return <CallbackForm></CallbackForm>;
 };
 
 export default Callback;
