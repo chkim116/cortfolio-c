@@ -13,9 +13,9 @@ const Callback = () => {
         async function getToken() {
             try {
                 // code를 보내 express에서 처리하게끔 요청
-                await Axios.post(`http://localhost:4000/auth`, {
+                await Axios.post(`/auth`, {
                     code,
-                });
+                }).then((res) => res.data);
                 router.push("/");
             } catch (error) {
                 console.error(error);

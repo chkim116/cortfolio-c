@@ -13,6 +13,7 @@ const reset = css`
         padding: 0;
         margin: 0;
         font-size: 14px;
+        color: #24292e;
     }
 
     h1,
@@ -33,6 +34,20 @@ const reset = css`
     li,
     ol {
         list-style: none;
+    }
+
+    button,
+    input {
+        all: unset;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #24292e;
     }
 `;
 

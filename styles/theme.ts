@@ -1,8 +1,10 @@
 export const theme = {
-    white: "#ffffffb3",
+    white: "#ffffff",
     black: "#24292e",
-    maxWidth: "max-width: 1024px",
+    maxWidth: "max-width: 1024px;",
     darkWhite: "#dbdbdb",
+    blue: "#1DA1F2",
+    pink: "rgb(243, 129, 127)",
     ss: "12px",
     ms: "16px",
     ls: "20px",
