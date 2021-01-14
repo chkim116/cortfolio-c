@@ -1,29 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserType } from "../../@types";
 import { authFetch, logoutFetch, checkFetch } from "../api";
 import { AppThunk } from "../rootReducer";
-
-export interface UserType {
-    _id: string;
-    avatarUrl: string;
-    repos: string;
-    followers: string;
-    followings: string;
-    bio: string | null;
-    name: string;
-    email: string;
-    url: string;
-    userId: string;
-    jwtToken?: string;
-    blog: string;
-    location: string | null;
-    company: string | null;
-}
 
 export interface AuthState {
     isLoading: boolean;
     isLogin: boolean;
     isError: string | null;
-    auth: UserType;
+    auth: UserType | null;
 }
 
 const initialState: AuthState = {
@@ -103,27 +87,27 @@ export const {
 
 export default auth.reducer;
 
-export const getAuth = (code): AppThunk => async (dispatch) => {
+export const getAuth = (code: string): AppThunk => async (dispatch) => {
     try {
         dispatch(getAuthRequest());
         const results = await authFetch(code);
-        dispatch(getAuthSuccess(results)); // 성공
+        dispatch(getAuthSuccess(results));
     } catch (err) {
-        dispatch(getAuthFailure(err)); // 실패
+        dispatch(getAuthFailure(err));
     }
 };
 
-export const logout = () => async (dispatch) => {
+export const logout = (): AppThunk => async (dispatch) => {
     try {
         dispatch(logoutRequest());
         await logoutFetch();
-        dispatch(logoutSuccess()); // 성공
+        dispatch(logoutSuccess());
     } catch (err) {
-        dispatch(logoutFailure(err)); // 실패
+        dispatch(logoutFailure(err));
     }
 };
 
-export const checkAuth = () => async (dispatch) => {
+export const checkAuth = (): AppThunk => async (dispatch) => {
     try {
         const results = await checkFetch();
         dispatch(checkAuthSuccess(results));

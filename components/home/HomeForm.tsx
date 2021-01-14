@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
 import ReactTooltip from "react-tooltip";
-import { UserType } from "../../modules/reducer/auth";
 import GitHubCalendar from "react-github-calendar";
+import { UserType } from "../../@types";
 
 const Container = styled.div`
     ${({ theme }) => theme.maxWidth};
@@ -30,11 +30,13 @@ const ProfileBox = styled.div`
     flex: 1;
 `;
 
-const ProfileImg = styled.div`
+export const ProfileImg = styled.div`
     width: 250px;
     height: 250px;
     border-radius: 50%;
     margin-bottom: 0.8em;
+    position: relative;
+    cursor: pointer;
     img {
         width: 100%;
         height: 100%;
@@ -89,7 +91,7 @@ const UserDesc = styled.div`
     }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
     padding: 0.8em;
     width: 150px;
     margin: 0.4em 0;
@@ -104,13 +106,13 @@ const Button = styled.button`
 `;
 
 interface Props {
-    auth: UserType;
+    auth: UserType | null;
 }
 
 const HomeForm = ({ auth }: Props) => {
     return (
         <Container>
-            {auth ? (
+            {auth?.userId ? (
                 <>
                     <ProfileContainer>
                         <ProfileBox>

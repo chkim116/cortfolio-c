@@ -15,7 +15,7 @@ const Callback = () => {
         if (!code) {
             return;
         }
-        dispatch(getAuth(code));
+        dispatch(getAuth(code as string));
     }, [code]);
 
     useEffect(() => {

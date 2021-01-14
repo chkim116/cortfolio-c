@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+// 유저 관련
+
 export const authFetch = (code) => {
     return Axios.post(`/auth`, {
         code,
