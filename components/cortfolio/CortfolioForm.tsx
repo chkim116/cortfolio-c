@@ -136,14 +136,14 @@ const CortfolioCard = styled.div`
 `;
 
 const CortfolioHover = styled.div`
-    /* display: none; */
+    display: none;
     position: absolute;
     top: 0;
     text-align: center;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     color: ${({ theme }) => theme.white};
@@ -252,7 +252,7 @@ const CortfolioForm = ({ auth, cortfolio }: Props) => {
                     <CortfolioContainer>
                         {cortfolio.project.map((project) => (
                             <Fragment key={project.gitLink}>
-                                <CortfolioCard>
+                                <CortfolioCard className="hover">
                                     <img
                                         src={project.thumb}
                                         alt={project.name}
@@ -282,6 +282,7 @@ const CortfolioForm = ({ auth, cortfolio }: Props) => {
                     >
                         +ADD
                     </EditButton>
+
                     <ContactInfo>
                         <h2>INFO.</h2>
                         <UserInfo>

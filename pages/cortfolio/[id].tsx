@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import CortfolioForm from "../../components/cortfolio/CortfolioForm";
 import { RootState } from "../../modules/rootReducer";
-import useSWR from "swr";
 import { CortfolioType } from "../../@types";
 import Footer from "../../components/layouts/Footer";
 
@@ -39,7 +38,7 @@ const Index = () => {
 
     return (
         <>
-            <CortfolioForm auth={auth} cortfolio={cortfolio}></CortfolioForm>{" "}
+            <CortfolioForm auth={auth} cortfolio={cortfolio}></CortfolioForm>
             <Footer></Footer>
         </>
     );

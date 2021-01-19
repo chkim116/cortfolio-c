@@ -17,7 +17,7 @@ export default function Home() {
         <>
             <Header />
             <AppLayout>
-                <HomeForm auth={auth} />;
+                <HomeForm auth={auth} />
                 <Footer />
             </AppLayout>
         </>
