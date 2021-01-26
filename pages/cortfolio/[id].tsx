@@ -1,8 +1,14 @@
 import { useSelector } from "react-redux";
-import CortfolioForm from "../../components/cortfolio/CortfolioForm";
 import { RootState } from "../../modules/rootReducer";
 import { CortfolioType } from "../../@types";
 import Footer from "../../components/layouts/Footer";
+import CortfolioHeader from "../../components/cortfolio/Header";
+import Profile from "../../components/cortfolio/Profile";
+import React from "react";
+import Skils from "../../components/cortfolio/Skills";
+import Project from "../../components/cortfolio/Project";
+import Connect from "../../components/cortfolio/Contact";
+import Contact from "../../components/cortfolio/Contact";
 
 const Index = () => {
     const { auth } = useSelector((state: RootState) => state.auth);
@@ -38,7 +44,31 @@ const Index = () => {
 
     return (
         <>
-            <CortfolioForm auth={auth} cortfolio={cortfolio}></CortfolioForm>
+            <CortfolioHeader userId={cortfolio.userId} />
+            <main>
+                {/* 이미지 수정 가능하게 만들기 */}
+                <Profile avatarUrl={cortfolio.avatarUrl} />
+
+                {/* 목록에서 검색하고, 불러오게 만들기 */}
+                <Skils
+                    authId={auth?.userId}
+                    cortfolioId={cortfolio.userId}
+                    skills={cortfolio.skills}
+                />
+                {/* 후버애니메이션 */}
+                <Project
+                    authId={auth?.userId}
+                    cortfolioId={cortfolio.userId}
+                    projects={cortfolio.project}
+                />
+
+                {/* 커리어 등록시만 보여주게하기 */}
+                <Contact
+                    authId={auth?.userId}
+                    cortfolioId={cortfolio.userId}
+                    contact={cortfolio.contact}
+                />
+            </main>
             <Footer></Footer>
         </>
     );

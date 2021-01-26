@@ -24,7 +24,6 @@ const initialState: AuthState = {
         email: "",
         url: "",
         userId: "",
-        jwtToken: "",
         bio: null,
         blog: "",
         location: null,

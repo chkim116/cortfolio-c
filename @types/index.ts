@@ -1,9 +1,9 @@
-interface SkillsType {
+export interface SkillsType {
     name: string;
     icon: string;
 }
 
-interface ProjectType {
+export interface ProjectType {
     name: string;
     thumb: string;
     description: string;
@@ -11,7 +11,7 @@ interface ProjectType {
     pageLink: string;
 }
 
-interface ContanctType {
+export interface ContanctType {
     name: string;
     phone: string;
     email: string;
@@ -46,5 +46,4 @@ export interface UserType {
     blog: string;
     location: string | null;
     company: string | null;
-    jwtToken?: string;
 }
