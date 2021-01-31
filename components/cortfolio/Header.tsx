@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Header = styled.header`
     width: 100%;
@@ -32,7 +33,9 @@ const Header = styled.header`
 const CortfolioHeader = ({ cortfolioId }: { cortfolioId: string }) => {
     return (
         <Header>
-            <div>{cortfolioId}</div>
+            <Link href={`/${cortfolioId}`}>
+                <div>{cortfolioId}</div>
+            </Link>
             <ul>
                 <li>Home</li>
                 <li>Skils</li>
