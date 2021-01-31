@@ -1,17 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../modules/rootReducer";
 import { CortfolioType } from "../../@types";
 import Footer from "../../components/layouts/Footer";
 import CortfolioHeader from "../../components/cortfolio/Header";
 import Profile from "../../components/cortfolio/Profile";
-import React from "react";
+import React, { useEffect } from "react";
 import Skils from "../../components/cortfolio/Skills";
 import Project from "../../components/cortfolio/Project";
-import Connect from "../../components/cortfolio/Contact";
 import Contact from "../../components/cortfolio/Contact";
+import { checkAuth } from "../../modules/reducer/auth";
 
 const Index = () => {
     const { auth } = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch();
 
     const cortfolio: CortfolioType = {
         userId: "chkim116",
@@ -41,6 +42,10 @@ const Index = () => {
             email: "dudnqnfqlc2naver.com",
         },
     };
+
+    useEffect(() => {
+        dispatch(checkAuth());
+    }, []);
 
     return (
         <>

@@ -59,7 +59,7 @@ const Nav = styled.div`
 `;
 
 const Header = () => {
-    const { isLogin, auth } = useSelector((state: RootState) => state.auth);
+    const {  auth } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
 
     const handleLogout = useCallback(() => {
@@ -81,7 +81,7 @@ const Header = () => {
             </SearchForm>
 
             <Nav>
-                {!isLogin && !auth.userId ? (
+                {!auth ? (
                     <Link
                         href={`https://github.com/login/oauth/authorize?client_id=16e55bcb353c5ebe989c&redirect_uri=http://localhost:3000/auth/github/callback`}
                     >
