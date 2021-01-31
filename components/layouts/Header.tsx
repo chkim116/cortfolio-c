@@ -17,6 +17,7 @@ const Container = styled.header`
 const Logo = styled.div`
     flex: 1;
     font-size: ${({ theme }) => theme.xls};
+    cursor: pointer;
 `;
 
 const SearchForm = styled.form`
@@ -59,7 +60,7 @@ const Nav = styled.div`
 `;
 
 const Header = () => {
-    const {  auth } = useSelector((state: RootState) => state.auth);
+    const { auth } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
 
     const handleLogout = useCallback(() => {

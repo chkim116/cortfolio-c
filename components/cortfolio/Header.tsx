@@ -15,6 +15,11 @@ const Header = styled.header`
     font-size: ${({ theme }) => theme.ls};
     background-color: #9dc6ec;
     color: ${({ theme }) => theme.white};
+
+    div {
+        cursor: pointer;
+    }
+
     ul {
         display: flex;
         li {
