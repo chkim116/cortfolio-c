@@ -18,7 +18,7 @@ const Index = () => {
         userId: "chkim116",
         avatarUrl:
             "https://media.vlpt.us/images/hyeong412/post/e0889d21-ac02-46c7-8e38-75ffcf77f8b4/gitbranch.png",
-        skills: [{ name: "몽고db", icon: "M" }],
+        skills: ["mongo", "react", "typescript", "java", "sql"],
         project: [
             {
                 name: "gonggus",
@@ -62,7 +62,7 @@ const Index = () => {
                 <Skils
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
-                    skills={cortfolio.skills}
+                    userSkills={cortfolio.skills}
                 />
                 {/* 후버애니메이션 */}
                 <Project

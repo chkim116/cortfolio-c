@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import EditButton from "./EditButton";
-import { SkillsType } from "../../@types";
 import { Title } from "../../styles/common";
 import { useToggle } from "../../hook";
 import ModalComponent from "./ModalComponent";
 import DeleteButton from "./DeleteButton";
+import { SkillList } from "./SkillList";
 
 const Container = styled.div`
     max-width: 600px;
@@ -16,20 +16,17 @@ const Container = styled.div`
     }
 `;
 
-const SkillList = styled.div`
-    display: flex;
-    margin-top: 1em;
-    padding: 0.5em;
+const SkillContainer = styled.div`
     min-height: 300px;
-`;
+`
 
 interface Props {
     authId: string | undefined;
     cortfolioId: string;
-    skills: SkillsType[];
+    userSkills: string[];
 }
 
-const Skills = ({ authId, cortfolioId, skills }: Props) => {
+const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     const [showingModal, handleShowingModal] = useToggle();
 
     return (
@@ -42,13 +39,12 @@ const Skills = ({ authId, cortfolioId, skills }: Props) => {
                     <DeleteButton deleteOn />
                 </>
             )}
-            {skills.map((skill) => (
-                <SkillList key={skill.name}>
-                    <span>{skill.icon}</span>
-                    {skill.name}
-                </SkillList>
-            ))}
+            <SkillContainer>
+            <SkillList userSkills={userSkills} />
+            </SkillContainer>
+        
         </Container>
+
     );
 };
 

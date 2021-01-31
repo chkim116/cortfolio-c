@@ -38,7 +38,7 @@ const ModalComponent = ({ onClick }: { onClick: any }) => {
         <div>
             <Background onClick={onClick} />
             <Modal>
-                <SkillList haveSkill={["react", "node"]} />
+                <SkillList userSkills={["react", "node"]} />
             </Modal>
         </div>
     );
