@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { SkillList } from "./SkillList";
 
 const Background = styled.div`
     width: 100%;
@@ -22,6 +21,7 @@ const Modal = styled.div`
     z-index: 600;
     background-color: ${({ theme }) => theme.white};
     border-radius: 12px;
+    overflow: scroll;
     @media ${({ theme }) => theme.tablet} {
         width: 550px;
         height: 500px;
@@ -33,13 +33,17 @@ const Modal = styled.div`
     }
 `;
 
-const ModalComponent = ({ onClick }: { onClick: any }) => {
+const ModalComponent = ({
+    onClick,
+    children,
+}: {
+    onClick: () => void;
+    children: React.ReactChild;
+}) => {
     return (
         <div>
             <Background onClick={onClick} />
-            <Modal>
-                <SkillList userSkills={["react", "node"]} />
-            </Modal>
+            <Modal>{children}</Modal>
         </div>
     );
 };

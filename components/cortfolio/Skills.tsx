@@ -5,7 +5,7 @@ import { Title } from "../../styles/common";
 import { useToggle } from "../../hook";
 import ModalComponent from "./ModalComponent";
 import DeleteButton from "./DeleteButton";
-import { SkillList } from "./SkillList";
+import { SkillList, skills } from "./SkillList";
 
 const Container = styled.div`
     max-width: 600px;
@@ -18,7 +18,17 @@ const Container = styled.div`
 
 const SkillContainer = styled.div`
     min-height: 300px;
-`
+`;
+
+const SkillModalTitle = styled.div`
+    position: sticky;
+    top: 0;
+    left: 0;
+    line-height: 35px;
+    text-align: center;
+    height: 35px;
+    background-color: ${({ theme }) => theme.white};
+`;
 
 interface Props {
     authId: string | undefined;
@@ -32,7 +42,19 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     return (
         <Container>
             <Title>Skills</Title>
-            {showingModal && <ModalComponent onClick={handleShowingModal} />}
+            {showingModal && (
+                <ModalComponent onClick={handleShowingModal as () => void}>
+                    <>
+                        <SkillModalTitle>
+                            자신의 스택을 선택해주세요
+                        </SkillModalTitle>
+                        <SkillList
+                            modal
+                            userSkills={skills().map((skill) => skill.name)}
+                        />
+                    </>
+                </ModalComponent>
+            )}
             {authId === cortfolioId && (
                 <>
                     <EditButton onClick={handleShowingModal}>+ADD</EditButton>
@@ -40,11 +62,9 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
                 </>
             )}
             <SkillContainer>
-            <SkillList userSkills={userSkills} />
+                <SkillList userSkills={userSkills} />
             </SkillContainer>
-        
         </Container>
-
     );
 };
 

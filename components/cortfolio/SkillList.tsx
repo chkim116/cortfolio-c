@@ -18,8 +18,14 @@ import {
     SiJquery,
 } from "react-icons/si";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-const skills = (size: number): skills[] => {
+export interface SkillsType {
+    name: string;
+    iconHtml: JSX.Element;
+}
+
+export const skills = (size?: number): SkillsType[] => {
     return [
         {
             name: "jquery",
@@ -104,7 +110,7 @@ const skills = (size: number): skills[] => {
     ];
 };
 
-const Container = styled.div`
+const Container = styled.div<{ modal: boolean | undefined }>`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2em;
@@ -114,30 +120,43 @@ const Container = styled.div`
     div {
         display: flex;
         align-items: center;
+        padding: 0.3em;
+        border-radius: 10px;
+        ${({ modal }) =>
+            modal &&
+            css`
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+            `}
+
         span:nth-of-type(2) {
             font-size: ${({ theme }) => theme.ls};
             margin-left: 8px;
             margin-bottom: 6px;
+        }
     }
 `;
-
-interface skills {
-    name: string;
-    iconHtml: JSX.Element;
-}
 
 const firstLetterUpper = (name: string): string => {
     const letter = name.split("");
     return `${letter[0].toUpperCase()}${letter.slice(1).join("")}`;
 };
 
-export const SkillList = ({ userSkills }: { userSkills: string[] }) => {
-    const showSkillList: skills[] = skills(38).filter((skill) =>
+export const SkillList = ({
+    userSkills,
+    modal,
+}: {
+    userSkills: string[];
+    modal?: boolean;
+}) => {
+    const showSkillList: SkillsType[] = skills(38).filter((skill) =>
         userSkills.includes(skill.name)
     );
 
     return (
-        <Container>
+        <Container modal={modal && modal}>
             {showSkillList.map((skill) => (
                 <div>
                     <span>{skill.iconHtml}</span>
