@@ -43,6 +43,7 @@ const Skills = ({ authId, cortfolioId, skills }: Props) => {
             >
                 +ADD
             </EditButton>
+            <DeleteButton deleteOn />
             {skills.map((skill) => (
                 <SkillList key={skill.name}>
                     <span>{skill.icon}</span>

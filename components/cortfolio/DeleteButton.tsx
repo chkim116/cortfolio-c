@@ -5,6 +5,7 @@ const Container = styled.div`
     max-width: 600px;
     position: relative;
     width: 100%;
+    margin: 0 auto;
 `;
 
 const Button = styled.button<{ deleteOn: boolean }>`
@@ -14,6 +15,7 @@ const Button = styled.button<{ deleteOn: boolean }>`
     position: absolute;
     text-align: center;
     right: 0;
+    top: -30px;
     font-size: ${({ theme }) => theme.ss};
     border: 1px solid ${({ theme }) => theme.darkWhite};
     ${({ deleteOn }) =>

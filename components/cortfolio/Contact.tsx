@@ -3,7 +3,9 @@ import styled from "@emotion/styled";
 import { Title } from "../../styles/common";
 import EditButton from "./EditButton";
 import { ContanctType } from "../../@types";
-import { useToggle } from "../../hook";import ModalComponent from "./ModalComponent";
+import { useToggle } from "../../hook";
+import ModalComponent from "./ModalComponent";
+import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -50,6 +52,7 @@ const Contact = ({ authId, cortfolioId, contact }: Props) => {
             >
                 +ADD
             </EditButton>
+            <DeleteButton deleteOn />
 
             <ContactInfo>
                 <h2>INFO.</h2>
