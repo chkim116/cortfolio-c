@@ -38,7 +38,7 @@ const DeleteButton = ({ deleteOn }: Props) => {
             <Button deleteOn={deleteOn} type="button">
                 삭제
             </Button>
-        </Co    ntainer>
+        </Container>
     );
 };
 
