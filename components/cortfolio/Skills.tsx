@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import EditButton from "./EditButton";
 import { Title } from "../../styles/common";
-import { useToggle } from "../../hook";
+import { useToggle, useHideBodyScroll } from "../../hook";
 import ModalComponent from "./ModalComponent";
 import DeleteButton from "./DeleteButton";
 import { SkillList, skills } from "./SkillList";
@@ -39,7 +39,9 @@ interface Props {
 const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     const [showingModal, handleShowingModal] = useToggle();
 
-    return (
+    useHideBodyScroll(showingModal as boolean); 
+
+    return ( 
         <Container>
             <Title>Skills</Title>
             {showingModal && (
