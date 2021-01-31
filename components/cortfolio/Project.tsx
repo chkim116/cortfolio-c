@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import { Fragment } from "react";
 import { useToggle } from "../../hook";
 import ModalComponent from "./ModalComponent";
+import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -80,13 +81,13 @@ const Project = ({ authId, cortfolioId, projects }: Props) => {
         <Container>
             <Title>Projects</Title>
             {showingModal && <ModalComponent onClick={handleShowingModal} />}
-            <EditButton
-                authId={authId}
-                cortfolioId={cortfolioId}
-                onClick={handleShowingModal}
-            >
-                +ADD
-            </EditButton>
+            {authId === cortfolioId && (
+                <>
+                    <EditButton onClick={handleShowingModal}>+ADD</EditButton>
+                    <DeleteButton deleteOn />
+                </>
+            )}
+
             <Cortfolio>
                 {projects.map((project) => (
                     <Fragment key={project.gitLink}>
