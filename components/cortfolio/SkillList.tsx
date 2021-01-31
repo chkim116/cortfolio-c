@@ -120,6 +120,7 @@ const Container = styled.div<{ modal: boolean | undefined }>`
     div {
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0.3em;
         border-radius: 10px;
         ${({ modal }) =>
