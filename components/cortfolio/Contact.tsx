@@ -45,14 +45,12 @@ const Contact = ({ authId, cortfolioId, contact }: Props) => {
         <Container id="contact">
             <Title>Contact Me</Title>
             {showingModal && <ModalComponent onClick={handleShowingModal} />}
-            <EditButton
-                authId={authId}
-                cortfolioId={cortfolioId}
-                onClick={handleShowingModal}
-            >
-                +ADD
-            </EditButton>
-            <DeleteButton deleteOn />
+            {authId === cortfolioId && (
+                <>
+                    <EditButton onClick={handleShowingModal}>+ADD</EditButton>
+                    <DeleteButton deleteOn />
+                </>
+            )}
 
             <ContactInfo>
                 <h2>INFO.</h2>

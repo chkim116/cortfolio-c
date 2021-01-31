@@ -36,14 +36,12 @@ const Skills = ({ authId, cortfolioId, skills }: Props) => {
         <Container>
             <Title>Skills</Title>
             {showingModal && <ModalComponent onClick={handleShowingModal} />}
-            <EditButton
-                authId={authId}
-                cortfolioId={cortfolioId}
-                onClick={handleShowingModal}
-            >
-                +ADD
-            </EditButton>
-            <DeleteButton deleteOn />
+            {authId === cortfolioId && (
+                <>
+                    <EditButton onClick={handleShowingModal}>+ADD</EditButton>
+                    <DeleteButton deleteOn />
+                </>
+            )}
             {skills.map((skill) => (
                 <SkillList key={skill.name}>
                     <span>{skill.icon}</span>

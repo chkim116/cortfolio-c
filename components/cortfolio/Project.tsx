@@ -81,14 +81,12 @@ const Project = ({ authId, cortfolioId, projects }: Props) => {
         <Container>
             <Title>Projects</Title>
             {showingModal && <ModalComponent onClick={handleShowingModal} />}
-            <EditButton
-                authId={authId}
-                cortfolioId={cortfolioId}
-                onClick={handleShowingModal}
-            >
-                +ADD
-            </EditButton>
-            <DeleteButton deleteOn />
+            {authId === cortfolioId && (
+                <>
+                    <EditButton onClick={handleShowingModal}>+ADD</EditButton>
+                    <DeleteButton deleteOn />
+                </>
+            )}
 
             <Cortfolio>
                 {projects.map((project) => (
