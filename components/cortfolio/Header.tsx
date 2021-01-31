@@ -29,10 +29,10 @@ const Header = styled.header`
     }
 `;
 
-const CortfolioHeader = ({ userId }: { userId: string }) => {
+const CortfolioHeader = ({ cortfolioId }: { cortfolioId: string }) => {
     return (
         <Header>
-            <div>{userId}</div>
+            <div>{cortfolioId}</div>
             <ul>
                 <li>Home</li>
                 <li>Skils</li>

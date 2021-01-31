@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import Axios from "axios";
 
 const Container = styled.div`
     background-color: #9dc6ec;
@@ -23,7 +25,7 @@ const Container = styled.div`
     }
 `;
 
-const ProfileImgTouch = styled.div`
+const ProfileImgHover = styled.div<{ changeImgHover: boolean }>`
     width: 350px;
     height: 350px;
     position: relative;
@@ -33,9 +35,13 @@ const ProfileImgTouch = styled.div`
         height: 100%;
         object-fit: fill;
     }
-    &:hover div {
-        display: block;
-    }
+    ${({ changeImgHover }) =>
+        changeImgHover &&
+        css`
+            &:hover div {
+                display: block;
+            }
+        `}
 
     div {
         cursor: pointer;
@@ -56,13 +62,42 @@ const ProfileImgTouch = styled.div`
     }
 `;
 
-const Profile = ({ avatarUrl }: { avatarUrl: string }) => {
+interface Props {
+    authId: string | undefined;
+    cortfolioId: string;
+    avatarUrl: string;
+}
+
+const imgFetch = (url: string, fd: FormData) => {
+    return Axios.post(url, fd).then((res) => res.data);
+};
+
+const Profile = ({ authId, cortfolioId, avatarUrl }: Props) => {
+    const [userAvatarImg, setUserAvatarImg] = useState(avatarUrl);
+
+    const handleChangeImg = useCallback(() => {
+        const input = document.createElement("input");
+        input.setAttribute("type", "file");
+        input.setAttribute("accept", "image/*");
+        input.click();
+
+        input.onchange = async (e: Event) => {
+            const { files } = e.currentTarget as HTMLInputElement;
+            const fd = new FormData();
+            if (files) {
+                fd.append("image", files[0]);
+                const changeImg = await imgFetch("/cort/changeimg", fd);
+                setUserAvatarImg(changeImg);
+            }
+        };
+    }, []);
+
     return (
         <Container>
-            <ProfileImgTouch>
-                <img src={avatarUrl} alt="프로필이미지" />
-                <div>+</div>
-            </ProfileImgTouch>
+            <ProfileImgHover changeImgHover={authId === cortfolioId}>
+                <img src={userAvatarImg} alt="프로필이미지" />
+                <div onClick={handleChangeImg}>+</div>
+            </ProfileImgHover>
             <a href="#contact">Contact ME</a>
         </Container>
     );

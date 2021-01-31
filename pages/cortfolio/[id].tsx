@@ -44,10 +44,14 @@ const Index = () => {
 
     return (
         <>
-            <CortfolioHeader userId={cortfolio.userId} />
+            <CortfolioHeader cortfolioId={cortfolio.userId} />
             <main>
                 {/* 이미지 수정 가능하게 만들기 */}
-                <Profile avatarUrl={cortfolio.avatarUrl} />
+                <Profile
+                    authId={auth?.userId}
+                    cortfolioId={cortfolio.userId}
+                    avatarUrl={cortfolio.avatarUrl}
+                />
 
                 {/* 목록에서 검색하고, 불러오게 만들기 */}
                 <Skils
