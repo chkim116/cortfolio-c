@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { SkillList } from "./SkillList";
 
 const Background = styled.div`
     width: 100%;
@@ -36,7 +37,9 @@ const ModalComponent = ({ onClick }: { onClick: any }) => {
     return (
         <div>
             <Background onClick={onClick} />
-            <Modal>스킬 or 프로젝트 or contact 입력</Modal>
+            <Modal>
+                <SkillList haveSkill={["react", "node"]} />
+            </Modal>
         </div>
     );
 };
