@@ -5,6 +5,7 @@ import { SkillsType } from "../../@types";
 import { Title } from "../../styles/common";
 import { useToggle } from "../../hook";
 import ModalComponent from "./ModalComponent";
+import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
     max-width: 600px;
