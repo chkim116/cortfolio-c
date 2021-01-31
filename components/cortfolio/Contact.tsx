@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Title } from "../../styles/common";
 import EditButton from "./EditButton";
 import { ContanctType } from "../../@types";
+import { useToggle } from "../../hook";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -36,10 +37,17 @@ interface Props {
 }
 
 const Contact = ({ authId, cortfolioId, contact }: Props) => {
+    const [showingModal, handleShowingModal] = useToggle();
+
     return (
         <Container id="contact">
             <Title>Contact Me</Title>
-            <EditButton authId={authId} cortfolioId={cortfolioId}>
+            {showingModal && <div>모달 on</div>}
+            <EditButton
+                authId={authId}
+                cortfolioId={cortfolioId}
+                onClick={handleShowingModal}
+            >
                 +ADD
             </EditButton>
 

@@ -4,6 +4,7 @@ import { Title } from "../../styles/common";
 import EditButton from "./EditButton";
 import styled from "@emotion/styled";
 import { Fragment } from "react";
+import { useToggle } from "../../hook";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -72,10 +73,17 @@ interface Props {
 }
 
 const Project = ({ authId, cortfolioId, projects }: Props) => {
+    const [showingModal, handleShowingModal] = useToggle();
+
     return (
         <Container>
             <Title>Projects</Title>
-            <EditButton authId={authId} cortfolioId={cortfolioId}>
+            {showingModal && <div>모달창 on</div>}
+            <EditButton
+                authId={authId}
+                cortfolioId={cortfolioId}
+                onClick={handleShowingModal}
+            >
                 +ADD
             </EditButton>
             <Cortfolio>
