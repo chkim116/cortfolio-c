@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import EditButton from "./EditButton";
 import { SkillsType } from "../../@types";
 import { Title } from "../../styles/common";
+import { useToggle } from "../../hook";
 
 const Container = styled.div`
     max-width: 600px;
@@ -27,10 +28,17 @@ interface Props {
 }
 
 const Skills = ({ authId, cortfolioId, skills }: Props) => {
+    const [showingModal, handleShowingModal] = useToggle();
+
     return (
         <Container>
             <Title>Skills</Title>
-            <EditButton authId={authId} cortfolioId={cortfolioId}>
+            {showingModal && <div>모달창 on</div>}
+            <EditButton
+                authId={authId}
+                cortfolioId={cortfolioId}
+                onClick={handleShowingModal}
+            >
                 +ADD
             </EditButton>
             {skills.map((skill) => (

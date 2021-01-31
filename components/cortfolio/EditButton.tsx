@@ -16,14 +16,17 @@ const Button = styled.button`
 interface Props {
     authId: string | undefined;
     cortfolioId: string;
+    onClick: any;
     children: React.ReactChild;
 }
 
-const EditButton = ({ authId, cortfolioId, children }: Props) => {
+const EditButton = ({ authId, onClick, cortfolioId, children }: Props) => {
     return (
         <div style={{ textAlign: "center" }}>
             {authId === cortfolioId && (
-                <Button type="button">{children}</Button>
+                <Button type="button" onClick={onClick}>
+                    {children}
+                </Button>
             )}
         </div>
     );
