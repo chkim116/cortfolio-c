@@ -5,6 +5,7 @@ import EditButton from "./EditButton";
 import styled from "@emotion/styled";
 import { Fragment } from "react";
 import { useToggle } from "../../hook";
+import ModalComponent from "./ModalComponent";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -78,7 +79,7 @@ const Project = ({ authId, cortfolioId, projects }: Props) => {
     return (
         <Container>
             <Title>Projects</Title>
-            {showingModal && <div>모달창 on</div>}
+            {showingModal && <ModalComponent onClick={handleShowingModal} />}
             <EditButton
                 authId={authId}
                 cortfolioId={cortfolioId}

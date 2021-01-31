@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Title } from "../../styles/common";
 import EditButton from "./EditButton";
 import { ContanctType } from "../../@types";
-import { useToggle } from "../../hook";
+import { useToggle } from "../../hook";import ModalComponent from "./ModalComponent";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -42,7 +42,7 @@ const Contact = ({ authId, cortfolioId, contact }: Props) => {
     return (
         <Container id="contact">
             <Title>Contact Me</Title>
-            {showingModal && <div>모달 on</div>}
+            {showingModal && <ModalComponent onClick={handleShowingModal} />}
             <EditButton
                 authId={authId}
                 cortfolioId={cortfolioId}

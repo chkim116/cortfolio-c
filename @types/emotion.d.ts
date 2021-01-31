@@ -14,6 +14,7 @@ declare module "@emotion/react" {
         xls: string;
         desktop: string;
         phone: string;
+        tablet: string;
     }
 }
 

@@ -4,6 +4,7 @@ import EditButton from "./EditButton";
 import { SkillsType } from "../../@types";
 import { Title } from "../../styles/common";
 import { useToggle } from "../../hook";
+import ModalComponent from "./ModalComponent";
 
 const Container = styled.div`
     max-width: 600px;
@@ -33,7 +34,7 @@ const Skills = ({ authId, cortfolioId, skills }: Props) => {
     return (
         <Container>
             <Title>Skills</Title>
-            {showingModal && <div>모달창 on</div>}
+            {showingModal && <ModalComponent onClick={handleShowingModal} />}
             <EditButton
                 authId={authId}
                 cortfolioId={cortfolioId}
