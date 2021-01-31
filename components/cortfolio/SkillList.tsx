@@ -17,12 +17,7 @@ import {
     SiBabel,
     SiJquery,
 } from "react-icons/si";
-//  스킬리스트 예제
-
-interface skills {
-    name: string;
-    iconHtml: JSX.Element;
-}
+import styled from "@emotion/styled";
 
 const skills = (size: number): skills[] => {
     return [
@@ -109,20 +104,46 @@ const skills = (size: number): skills[] => {
     ];
 };
 
-export const SkillList = ({ haveSkill }: { haveSkill: string[] }) => {
-    const showSkillList: skills[] = skills(32).filter((skill) =>
-        haveSkill.includes(skill.name)
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    text-align: center;
+    margin-top: 1em;
+    padding: 0.5em;
+    div {
+        display: flex;
+        align-items: center;
+        span:nth-of-type(2) {
+            font-size: ${({ theme }) => theme.ls};
+            margin-left: 8px;
+            margin-bottom: 6px;
+    }
+`;
+
+interface skills {
+    name: string;
+    iconHtml: JSX.Element;
+}
+
+const firstLetterUpper = (name: string): string => {
+    const letter = name.split("");
+    return `${letter[0].toUpperCase()}${letter.slice(1).join("")}`;
+};
+
+export const SkillList = ({ userSkills }: { userSkills: string[] }) => {
+    const showSkillList: skills[] = skills(38).filter((skill) =>
+        userSkills.includes(skill.name)
     );
 
     return (
-        <div>
+        <Container>
             {showSkillList.map((skill) => (
                 <div>
-                    <span>{skill.name}</span>
                     <span>{skill.iconHtml}</span>
+                    <span>{firstLetterUpper(skill.name)}</span>
                 </div>
             ))}
-
-        </div>
+        </Container>
     );
 };
