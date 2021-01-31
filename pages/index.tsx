@@ -4,7 +4,6 @@ import Footer from "../components/layouts/Footer";
 import Header from "../components/layouts/Header";
 import { RootState } from "../modules/rootReducer";
 import styled from "@emotion/styled";
-
 import MainComponent from "../components/home/MainComponent";
 
 export const Button = styled.button`

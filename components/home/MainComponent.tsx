@@ -16,7 +16,13 @@ const AppLayout = styled.main`
     min-height: 80vh;
 `;
 
-const MainComponent = ({ auth }: { auth: UserType | null }) => {
+const MainComponent = ({
+    auth,
+    routerId,
+}: {
+    auth: UserType | null;
+    routerId?: string;
+}) => {
     return (
         <AppLayout>
             {auth?.userId ? (
@@ -26,7 +32,7 @@ const MainComponent = ({ auth }: { auth: UserType | null }) => {
                     {auth.userId && <Calendar userId={auth.userId} />}
                 </>
             ) : null}
-            <Link href={`/cortfolio/chkim116`}>
+            <Link href={`/cortfolio/${routerId ? routerId : auth?.userId}`}>
                 <a>
                     <Button type="button">Cortfolio</Button>
                 </a>
