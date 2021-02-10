@@ -10,14 +10,14 @@ export const useToggle = () => {
     return [toggle, onClick, setToggle];
 };
 
-export const  useHideBodyScroll = (toggle : boolean) => {
+export const useHideBodyScroll = (toggle: boolean) => {
     useEffect(() => {
         if (process.browser && toggle) {
             const body = document.querySelector("body");
-        (body as HTMLBodyElement).style.overflow = "hidden";
-    } else {
-        const body = document.querySelector("body");
-        (body as HTMLBodyElement).style.overflow = "scroll";
-    }
-}, [toggle])
-}
+            (body as HTMLBodyElement).style.overflow = "hidden";
+        } else {
+            const body = document.querySelector("body");
+            (body as HTMLBodyElement).style.overflow = "scroll";
+        }
+    }, [toggle]);
+};

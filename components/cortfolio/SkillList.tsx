@@ -110,33 +110,43 @@ export const skills = (size?: number): SkillsType[] => {
     ];
 };
 
-const Container = styled.div<{ modal: boolean | undefined }>`
+const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2em;
     text-align: center;
     margin-top: 1em;
     padding: 0.5em;
-    div {
-        display: flex;
-        align-items: center;
-        padding: 0.3em;
-        border-radius: 10px;
-        ${({ modal }) =>
-            modal &&
-            css`
-                justify-content: center;
-                cursor: pointer;
-                &:hover {
-                    background-color: rgba(0, 0, 0, 0.1);
-                }
-            `}
+`;
+
+const SkillIcons = styled.div<{
+    modal: boolean | undefined;
+    selected: boolean;
+}>`
+    display: flex;
+    align-items: center;
+    padding: 0.3em;
+    border-radius: 10px;
+    ${({ modal }) =>
+        modal &&
+        css`
+            justify-content: center;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        `}
+
+    ${({ selected }) =>
+        selected &&
+        css`
+            background-color: rgba(0, 0, 0, 0.1);
+        `}
 
         span:nth-of-type(2) {
-            font-size: ${({ theme }) => theme.ls};
-            margin-left: 8px;
-            margin-bottom: 6px;
-        }
+        font-size: ${({ theme }) => theme.ls};
+        margin-left: 8px;
+        margin-bottom: 6px;
     }
 `;
 
@@ -148,21 +158,30 @@ const firstLetterUpper = (name: string): string => {
 export const SkillList = ({
     userSkills,
     modal,
+    onSeleted,
+    selectName,
 }: {
     userSkills: string[];
     modal?: boolean;
+    onSeleted: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    selectName: string[];
 }) => {
     const showSkillList: SkillsType[] = skills(38).filter((skill) =>
         userSkills.includes(skill.name)
     );
 
     return (
-        <Container modal={modal && modal}>
+        <Container>
             {showSkillList.map((skill) => (
-                <div>
+                <SkillIcons
+                    data-value={skill.name}
+                    modal={modal && modal}
+                    selected={selectName?.includes(skill.name) && true}
+                    onClick={onSeleted}
+                >
                     <span>{skill.iconHtml}</span>
                     <span>{firstLetterUpper(skill.name)}</span>
-                </div>
+                </SkillIcons>
             ))}
         </Container>
     );

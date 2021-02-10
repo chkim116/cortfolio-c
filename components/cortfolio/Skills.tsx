@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import EditButton from "./EditButton";
 import { Title } from "../../styles/common";
@@ -38,12 +38,27 @@ interface Props {
 
 const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     const [showingModal, handleShowingModal] = useToggle();
+    const [selectName, setSelectName] = useState<string[]>([]);
+    useHideBodyScroll(showingModal as boolean);
 
-    useHideBodyScroll(showingModal as boolean); 
+    const onSeleted = useCallback(
+        (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+            const { value } = e.currentTarget.dataset;
+            if (selectName?.includes(value as string)) {
+                setSelectName(
+                    selectName.filter((name) => name !== (value as string))
+                );
+            } else {
+                setSelectName(selectName.concat(value as string));
+            }
+        },
+        [selectName]
+    );
 
-    return ( 
+    return (
         <Container>
             <Title>Skills</Title>
+
             {showingModal && (
                 <ModalComponent onClick={handleShowingModal as () => void}>
                     <>
@@ -51,6 +66,8 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
                             자신의 스택을 선택해주세요
                         </SkillModalTitle>
                         <SkillList
+                            selectName={selectName}
+                            onSeleted={onSeleted as () => void}
                             modal
                             userSkills={skills().map((skill) => skill.name)}
                         />
