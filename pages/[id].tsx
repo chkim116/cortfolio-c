@@ -4,6 +4,9 @@ import Footer from "../components/layouts/Footer";
 import useSWR from "swr";
 import Axios from "axios";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { saveCortfolio, resetCortfolio } from "../modules/reducer/cortfolio";
 
 const getCortfolioFetch = (url: string) => {
     return Axios.get(url).then((res) => res.data);
@@ -11,7 +14,18 @@ const getCortfolioFetch = (url: string) => {
 
 const index = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
+
     const { data, error } = useSWR(`${router.asPath}`, getCortfolioFetch);
+
+    useEffect(() => {
+        if (data) {
+            dispatch(saveCortfolio(data));
+            return () => {
+                dispatch(resetCortfolio());
+            };
+        }
+    }, [data]);
 
     return (
         <>
