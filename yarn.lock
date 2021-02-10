@@ -1386,9 +1386,9 @@ data-uri-to-buffer@3.0.1:
   integrity sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==
 
 date-fns@^2.14.0:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.16.1.tgz#05775792c3f3331da812af253e1a935851d3834b"
-  integrity sha512-sAJVKx/FqrLYHAQeN7VpJrPhagZc9R4ImZIWYRFZaaohR3KzmuK88touwsSwSVT8Qcbd4zoDsnGfX4GFB4imyQ==
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.17.0.tgz#afa55daea539239db0a64e236ce716ef3d681ba1"
+  integrity sha512-ZEhqxUtEZeGgg9eHNSOAJ8O9xqSgiJdrL0lzSSfMF54x6KXWJiOH/xntSJ9YomJPrYH/p08t6gWjGWq1SDJlSA==
 
 debug@4:
   version "4.3.1"
@@ -2675,11 +2675,6 @@ mkdirp@^0.5.1, mkdirp@^0.5.3:
   dependencies:
     minimist "^1.2.5"
 
-mobx@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.0.4.tgz#8fc3e3629a3346f8afddf5bd954411974744dad1"
-  integrity sha512-wT2QJT9tW19VSHo9x7RPKU3z/I2Ps6wUS8Kb1OO+kzmg7UY3n4AkcaYG6jq95Lp1R9ohjC/NGYuT2PtuvBjhFg==
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -3360,10 +3355,10 @@ react-dom@17.0.1:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
-react-github-calendar@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-2.0.1.tgz#34ad3e3fef3d30e721b199923829e8db26b0b8f4"
-  integrity sha512-65LzFz3RqBvVwfaJaiZK9B3EhCqtVfRmwtqMtFXc0GluLArEgP9V6LAputbTAtlojrsNdLjYdaUDp096r8DL/A==
+react-github-calendar@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-2.0.2.tgz#a8cd23a80575f2d50ccf6b237734e4e628e22e19"
+  integrity sha512-SkW4qWRGvNxzsAeukdbrIRWyEHSwkbnr+YdfHaXg/jE6KOHmZL0lxTty1kY0l62f9naeVHsmNxeLCPC748Fmtw==
   dependencies:
     date-fns "^2.14.0"
     tinycolor2 "^1.4.0"
