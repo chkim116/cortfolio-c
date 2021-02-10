@@ -163,8 +163,8 @@ export const SkillList = ({
 }: {
     userSkills: string[];
     modal?: boolean;
-    onSeleted: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    selectName: string[];
+    onSeleted?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    selectName?: string[];
 }) => {
     const showSkillList: SkillsType[] = skills(38).filter((skill) =>
         userSkills.includes(skill.name)
@@ -176,7 +176,7 @@ export const SkillList = ({
                 <SkillIcons
                     data-value={skill.name}
                     modal={modal && modal}
-                    selected={selectName?.includes(skill.name) && true}
+                    selected={selectName?.includes(skill.name) ? true : false}
                     onClick={onSeleted}
                 >
                     <span>{skill.iconHtml}</span>

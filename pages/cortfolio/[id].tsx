@@ -51,27 +51,27 @@ const Index = () => {
         <>
             <CortfolioHeader cortfolioId={cortfolio.userId} />
             <main>
-                {/* 이미지 수정 가능하게 만들기 */}
+                {/* TODO: 이미지 수정 가능하게 만들기 */}
                 <Profile
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
                     avatarUrl={cortfolio.avatarUrl}
                 />
 
-                {/* 목록에서 검색하고, 불러오게 만들기 */}
+                {/* TODO: 목록에서 검색하고, 불러오게 만들기 */}
                 <Skils
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
                     userSkills={cortfolio.skills}
                 />
-                {/* 후버애니메이션 */}
+                {/* TODO: 후버애니메이션 */}
                 <Project
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
                     projects={cortfolio.project}
                 />
 
-                {/* 커리어 등록시만 보여주게하기 */}
+                {/* TODO: 커리어 등록시만 보여주게하기 */}
                 <Contact
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
