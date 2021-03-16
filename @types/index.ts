@@ -1,8 +1,3 @@
-export interface SkillsType {
-    name: string;
-    icon: string;
-}
-
 export interface ProjectType {
     name: string;
     thumb: string;
@@ -27,7 +22,7 @@ export interface ContanctType {
 export interface CortfolioType {
     userId: string;
     avatarUrl: string;
-    skills: SkillsType[];
+    skills: string[];
     project: ProjectType[];
     contact: ContanctType;
 }

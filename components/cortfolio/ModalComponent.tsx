@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "@emotion/styled";
 
 const Background = styled.div`
@@ -16,11 +15,15 @@ const Modal = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
+    width: 700px;
     height: 500px;
     z-index: 600;
     background-color: ${({ theme }) => theme.white};
     border-radius: 12px;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     @media ${({ theme }) => theme.tablet} {
         width: 550px;
         height: 500px;
@@ -32,11 +35,17 @@ const Modal = styled.div`
     }
 `;
 
-const ModalComponent = ({ onClick }: { onClick: any }) => {
+const ModalComponent = ({
+    onClick,
+    children,
+}: {
+    onClick: () => void;
+    children: React.ReactChild;
+}) => {
     return (
         <div>
             <Background onClick={onClick} />
-            <Modal>스킬 or 프로젝트 or contact 입력</Modal>
+            <Modal>{children}</Modal>
         </div>
     );
 };

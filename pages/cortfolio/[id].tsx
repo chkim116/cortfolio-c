@@ -14,11 +14,12 @@ const Index = () => {
     const { auth } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
 
+    // TODO: 여기서 코트폴리오를 서버에서 불러온다.
     const cortfolio: CortfolioType = {
         userId: "chkim116",
         avatarUrl:
             "https://media.vlpt.us/images/hyeong412/post/e0889d21-ac02-46c7-8e38-75ffcf77f8b4/gitbranch.png",
-        skills: [{ name: "몽고db", icon: "M" }],
+        skills: ["mongo", "react", "typescript", "java", "sql"],
         project: [
             {
                 name: "gonggus",
@@ -51,27 +52,27 @@ const Index = () => {
         <>
             <CortfolioHeader cortfolioId={cortfolio.userId} />
             <main>
-                {/* 이미지 수정 가능하게 만들기 */}
+                {/* TODO: 이미지 수정 가능하게 만들기 */}
                 <Profile
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
                     avatarUrl={cortfolio.avatarUrl}
                 />
 
-                {/* 목록에서 검색하고, 불러오게 만들기 */}
+                {/* TODO: 목록에서 검색하고, 불러오게 만들기 */}
                 <Skils
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
-                    skills={cortfolio.skills}
+                    userSkills={cortfolio.skills}
                 />
-                {/* 후버애니메이션 */}
+                {/* TODO: 후버애니메이션 */}
                 <Project
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}
                     projects={cortfolio.project}
                 />
 
-                {/* 커리어 등록시만 보여주게하기 */}
+                {/* TODO: 커리어 등록시만 보여주게하기 */}
                 <Contact
                     authId={auth?.userId}
                     cortfolioId={cortfolio.userId}

@@ -6,6 +6,7 @@ import { theme } from "../styles/theme";
 import Axios from "axios";
 import { Provider } from "react-redux";
 import store from "../modules/store";
+import AuthCtx from "../components/common/Auth";
 
 Axios.defaults.baseURL = "http://localhost:4000";
 Axios.defaults.withCredentials = true;
@@ -15,7 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
             <Global styles={reset} />
             <Provider store={store}>
-                <Component {...pageProps} />
+                <AuthCtx>
+                    <Component {...pageProps} />
+                </AuthCtx>
             </Provider>
         </ThemeProvider>
     );
