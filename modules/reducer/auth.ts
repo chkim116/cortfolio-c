@@ -71,6 +71,11 @@ const auth = createSlice({
             state.isError = null;
             state.auth = payload;
         },
+        checkAuthFailure: (state, { payload }) => {
+            state.isLogin = false;
+            state.isError = payload;
+            state.auth = null;
+        },
     },
 });
 
@@ -82,6 +87,7 @@ export const {
     logoutSuccess,
     logoutFailure,
     checkAuthSuccess,
+    checkAuthFailure,
 } = auth.actions;
 
 export default auth.reducer;
@@ -111,6 +117,6 @@ export const checkAuth = (): AppThunk => async (dispatch) => {
         const results = await checkFetch();
         dispatch(checkAuthSuccess(results));
     } catch (err) {
-        console.error(err);
+        dispatch(checkAuthFailure(err));
     }
 };

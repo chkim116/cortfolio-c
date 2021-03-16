@@ -36,9 +36,12 @@ interface Props {
     userSkills: string[];
 }
 
+// TODO: 누를때 바로 반영하게 만들기.
+
 const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     const [showingModal, handleShowingModal] = useToggle();
-    const [selectName, setSelectName] = useState<string[]>([]);
+    // TODO: data가 오면, 그 안에 있는 skillList를기본  state로 저장하기
+    const [selectName, setSelectName] = useState<string[]>(["react"]);
     useHideBodyScroll(showingModal as boolean);
 
     const onSeleted = useCallback(

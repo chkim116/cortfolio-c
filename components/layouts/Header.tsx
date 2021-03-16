@@ -67,10 +67,6 @@ const Header = () => {
         dispatch(logout());
     }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(checkAuth());
-    }, []);
-
     return (
         <Container>
             <Logo>
