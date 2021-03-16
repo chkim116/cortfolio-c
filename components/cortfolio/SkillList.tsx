@@ -120,7 +120,7 @@ const Container = styled.div`
 `;
 
 const SkillIcons = styled.div<{
-    modal: boolean | undefined;
+    modal?: boolean;
     selected: boolean;
 }>`
     display: flex;
@@ -172,17 +172,32 @@ export const SkillList = ({
 
     return (
         <Container>
-            {showSkillList.map((skill) => (
-                <SkillIcons
-                    data-value={skill.name}
-                    modal={modal && modal}
-                    selected={selectName?.includes(skill.name) ? true : false}
-                    onClick={onSeleted}
-                >
-                    <span>{skill.iconHtml}</span>
-                    <span>{firstLetterUpper(skill.name)}</span>
-                </SkillIcons>
-            ))}
+            {!modal
+                ? showSkillList.map((skill) => (
+                      <SkillIcons
+                          data-value={skill.name}
+                          selected={
+                              selectName?.includes(skill.name) ? true : false
+                          }
+                          onClick={onSeleted}
+                      >
+                          <span>{skill.iconHtml}</span>
+                          <span>{firstLetterUpper(skill.name)}</span>
+                      </SkillIcons>
+                  ))
+                : skills(38).map((skill) => (
+                      <SkillIcons
+                          data-value={skill.name}
+                          modal={modal && modal}
+                          selected={
+                              selectName?.includes(skill.name) ? true : false
+                          }
+                          onClick={onSeleted}
+                      >
+                          <span>{skill.iconHtml} </span>
+                          <span>{firstLetterUpper(skill.name)}</span>
+                      </SkillIcons>
+                  ))}
         </Container>
     );
 };

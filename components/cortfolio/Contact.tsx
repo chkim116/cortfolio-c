@@ -5,7 +5,6 @@ import EditButton from "./EditButton";
 import { ContanctType } from "../../@types";
 import { useToggle } from "../../hook";
 import ModalComponent from "./ModalComponent";
-import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
     margin: 4em 0;
@@ -44,12 +43,13 @@ const Contact = ({ authId, cortfolioId, contact }: Props) => {
     return (
         <Container id="contact">
             <Title>Contact Me</Title>
-            {showingModal && <ModalComponent onClick={handleShowingModal} />}
+            {showingModal && (
+                <ModalComponent onClick={handleShowingModal}>
+                    헤헤
+                </ModalComponent>
+            )}
             {authId === cortfolioId && (
-                <>
-                    <EditButton onClick={handleShowingModal}>+ADD</EditButton>
-                    <DeleteButton deleteOn />
-                </>
+                <EditButton onClick={handleShowingModal}>+ADD</EditButton>
             )}
 
             <ContactInfo>

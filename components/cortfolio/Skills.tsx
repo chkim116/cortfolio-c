@@ -4,7 +4,6 @@ import EditButton from "./EditButton";
 import { Title } from "../../styles/common";
 import { useToggle, useHideBodyScroll } from "../../hook";
 import ModalComponent from "./ModalComponent";
-import DeleteButton from "./DeleteButton";
 import { SkillList, skills } from "./SkillList";
 
 const Container = styled.div`
@@ -36,14 +35,12 @@ interface Props {
     userSkills: string[];
 }
 
-// TODO: 누를때 바로 반영하게 만들기.
-
 const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
     const [showingModal, handleShowingModal] = useToggle();
-    // TODO: data가 오면, 그 안에 있는 skillList를기본  state로 저장하기
-    const [selectName, setSelectName] = useState<string[]>(["react"]);
-    useHideBodyScroll(showingModal as boolean);
+    const [selectName, setSelectName] = useState<string[]>(userSkills);
+    useHideBodyScroll(showingModal);
 
+    // * 이 로직은 , 모달창에서 스택을 누르면 추가시키는 로직
     const onSeleted = useCallback(
         (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
             const { value } = e.currentTarget.dataset;
@@ -51,9 +48,9 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
                 setSelectName(
                     selectName.filter((name) => name !== (value as string))
                 );
-            } else {
-                setSelectName(selectName.concat(value as string));
+                return;
             }
+            setSelectName([...selectName, value as string]);
         },
         [selectName]
     );
@@ -72,7 +69,7 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
                             selectName={selectName}
                             onSeleted={onSeleted as () => void}
                             modal
-                            userSkills={skills().map((skill) => skill.name)}
+                            userSkills={userSkills}
                         />
                     </>
                 </ModalComponent>
@@ -80,11 +77,10 @@ const Skills = ({ authId, cortfolioId, userSkills }: Props) => {
             {authId === cortfolioId && (
                 <>
                     <EditButton onClick={handleShowingModal}>+ADD</EditButton>
-                    <DeleteButton deleteOn />
                 </>
             )}
             <SkillContainer>
-                <SkillList userSkills={userSkills} />
+                <SkillList userSkills={selectName} />
             </SkillContainer>
         </Container>
     );

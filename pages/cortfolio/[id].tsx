@@ -14,6 +14,7 @@ const Index = () => {
     const { auth } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
 
+    // TODO: 여기서 코트폴리오를 서버에서 불러온다.
     const cortfolio: CortfolioType = {
         userId: "chkim116",
         avatarUrl:

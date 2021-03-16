@@ -7,7 +7,7 @@ export const useToggle = () => {
         setToggle((prev) => !prev);
     }, []);
 
-    return [toggle, onClick, setToggle];
+    return [toggle, onClick, setToggle] as const;
 };
 
 export const useHideBodyScroll = (toggle: boolean) => {
